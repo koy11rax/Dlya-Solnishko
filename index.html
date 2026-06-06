@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>После тебя — тишина | аудиокнига стихов</title>
+  <meta name="description" content="Интерактивный сайт-аудиокнига со стихами, плейлистом, субтитрами и книжным оформлением." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="moon"></span>
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span>
+    <span class="glow g1"></span><span class="glow g2"></span>
+  </div>
+
+  <header class="site-header">
+    <p class="eyebrow">аудиоверсии стихов</p>
+    <h1>После тебя — тишина</h1>
+    <p class="lead">Открой страницу, нажми play — и строки начнут подсвечиваться в ритме записи.</p>
+  </header>
+
+  <main class="app" id="app">
+    <aside class="shelf" aria-label="Содержание книги">
+      <div class="cover-card">
+        <img src="assets/book-spreads/spread-1.webp" alt="Обложка сборника После тебя — тишина" />
+        <div>
+          <span>мини-сборник</span>
+          <strong>8 аудиостихов</strong>
+        </div>
+      </div>
+
+      <div class="intro-card">
+        <h2>Перед началом</h2>
+        <p id="introText"></p>
+      </div>
+
+      <div class="playlist-head">
+        <h2>Содержание</h2>
+        <button class="ghost-btn" id="shuffleBtn" type="button" title="Случайный стих">✦ случайно</button>
+      </div>
+      <ol class="playlist" id="playlist"></ol>
+    </aside>
+
+    <section class="stage" aria-label="Книжный аудио-плеер">
+      <div class="book-wrap" id="bookWrap">
+        <div class="book" id="book">
+          <article class="page page-left">
+            <div class="page-ornament top"></div>
+            <p class="kicker" id="poemMood">сейчас звучит</p>
+            <h2 id="poemTitle">Старое прошлое</h2>
+            <p class="quote" id="poemQuote"></p>
+
+            <div class="subtitles" aria-live="polite">
+              <span class="label">субтитры</span>
+              <p id="currentSubtitle">Нажми play, чтобы начать.</p>
+              <p id="nextSubtitle" class="next-subtitle"></p>
+            </div>
+
+            <canvas id="visualizer" width="700" height="190" aria-label="Аудиовизуализация"></canvas>
+
+            <div class="player-panel">
+              <audio id="audio" preload="metadata"></audio>
+
+              <div class="time-row">
+                <span id="currentTime">0:00</span>
+                <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Перемотка" />
+                <span id="duration">0:00</span>
+              </div>
+
+              <div class="controls" aria-label="Управление воспроизведением">
+                <button id="prevBtn" class="round-btn" type="button" title="Предыдущий стих">⟵</button>
+                <button id="playBtn" class="play-btn" type="button" title="Играть или пауза">▶</button>
+                <button id="nextBtn" class="round-btn" type="button" title="Следующий стих">⟶</button>
+              </div>
+
+              <div class="mini-actions">
+                <button id="repeatBtn" type="button" class="text-btn">повтор: выкл</button>
+                <button id="originalBtn" type="button" class="text-btn">оригинальный разворот</button>
+              </div>
+            </div>
+            <div class="page-number" id="leftPageNumber">audio</div>
+          </article>
+
+          <article class="page page-right">
+            <div class="page-ornament top"></div>
+            <div class="poem-text" id="poemText"></div>
+            <div class="page-number" id="rightPageNumber">5</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="afterword" aria-label="После слов">
+    <h2>После слов</h2>
+    <div id="afterText"></div>
+  </section>
+
+  <dialog id="spreadDialog" class="spread-dialog">
+    <button id="closeDialog" class="dialog-close" type="button" aria-label="Закрыть">×</button>
+    <img id="spreadImage" alt="Оригинальный разворот книги" />
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
